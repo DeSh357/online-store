@@ -1,0 +1,116 @@
+@import "../../../assets/styles/variables";
+
+.main {
+  background-image: url("../../../assets/images/page/main.png");
+  background-repeat: no-repeat;
+  background-position-x: calc(50% + 210px);
+  padding-top: 58px;
+  padding-bottom: 231px;
+
+  .container {
+    .main-title {
+      font-family: 'Lora', sans-serif;
+      font-weight: 400;
+      font-size: 60px;
+      line-height: 130%;
+      color: #2A592E;
+      margin-bottom: 67px;
+    }
+
+    .main-text {
+      font-size: 18px;
+      line-height: 140%;
+      color: $green-text-color;
+      max-width: 528px;
+    }
+  }
+}
+
+.offers {
+  background-color: #A4CBA3;
+  padding: 80px 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    .offer {
+      width: 600px;
+      height: 250px;
+      padding: 35px 35px 0 35px;
+      background-color: #FFF;
+      border-radius: 5px;
+      box-sizing: border-box;
+
+      .offer-title {
+        font-size: 20px;
+        color: $green-text-color;
+        line-height: 130%;
+      }
+
+      .offer-content {
+        display: flex;
+
+        .offer-text {
+          font-size: 16px;
+          color: $green-text-color;
+          line-height: 130%;
+        }
+      }
+
+      &.offer-insta {
+        .offer-image {
+          margin-top: 35px;
+        }
+
+        .offer-text {
+          margin-top: 16px;
+          max-width: 234px;
+          margin-left: 58px;
+        }
+
+        .offer-button {
+          margin-left: 168px;
+          margin-top: 22px;
+
+          .button {
+            width: 228px;
+          }
+        }
+      }
+
+      &.offer-collection {
+        .offer-title {
+          max-width: 362px;
+        }
+
+        .offer-image {
+          margin-left: 81px;
+          margin-top: 12px;
+        }
+
+        .offer-button {
+          margin-left: 44px;
+          margin-top: 75px;
+
+          .button {
+            width: 177px;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+.best-products {
+  padding-bottom: 130px;
+  padding-top: 120px;
+
+  .carousel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+}
