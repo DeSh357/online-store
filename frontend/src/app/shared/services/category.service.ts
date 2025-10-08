@@ -22,7 +22,7 @@ export class CategoryService {
     return this.http.get<TypeType[]>(environment.api + 'types')
       .pipe(
         map((items: TypeType[]) => {
-          const array: CategoryWithTypeType[] = []
+          const array: CategoryWithTypeType[] = [];
           items.forEach((item: TypeType) => {
 
             const foundItem = array.find(arrayItem => arrayItem.url === item.category.url);
@@ -43,9 +43,9 @@ export class CategoryService {
                   name: item.name,
                   url: item.url,
                 }]
-              })
+              });
             }
-          })
+          });
 
 
           return array;

@@ -2,9 +2,13 @@
 
 .login .container {
   display: flex;
+  flex: 1;
 
   .page-image {
     margin-left: 49px;
-    vertical-align: bottom;
+
+    img {
+      vertical-align: bottom;
+    }
   }
 }

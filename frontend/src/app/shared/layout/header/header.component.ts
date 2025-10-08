@@ -52,8 +52,19 @@ export class HeaderComponent implements OnInit {
 
     this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
       this.isLogged = isLoggedIn;
+
     });
 
+    this.updateCartCount();
+
+    this.cartService.count$
+      .subscribe(count => {
+        this.count = count;
+        this.updateCartCount();
+      });
+  }
+
+  updateCartCount() {
     this.cartService.getCartCount()
       .subscribe((data: DefaultResponseType | { count: number }) => {
         if ((data as DefaultResponseType).error !== undefined) {
@@ -61,12 +72,7 @@ export class HeaderComponent implements OnInit {
         }
 
         this.count = (data as {count: number}).count;
-      })
-
-    this.cartService.count$
-      .subscribe(count => {
-        this.count = count;
-      })
+      });
   }
 
   logout(): void {
@@ -78,7 +84,7 @@ export class HeaderComponent implements OnInit {
         error: (errorResponse: HttpErrorResponse) => {
           this.doLogout();
         }
-      })
+      });
   }
 
   doLogout(): void {

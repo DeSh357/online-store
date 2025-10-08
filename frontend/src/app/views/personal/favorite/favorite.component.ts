@@ -50,7 +50,7 @@ export class FavoriteComponent implements OnInit {
                 isInCart: false,
                 count: 1
               };
-            })
+            });
           });
       });
   }
@@ -64,7 +64,7 @@ export class FavoriteComponent implements OnInit {
         }
 
         this.products = this.products.filter((item: FavoriteType) => item.id !== id);
-      })
+      });
   }
 
   addToCart(product: FavoriteWithCartType): void {

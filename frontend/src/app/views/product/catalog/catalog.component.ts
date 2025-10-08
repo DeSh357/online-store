@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ProductService} from "../../../shared/services/product.service";
 import {ProductType} from "../../../../types/product.type";
 import {CategoryService} from "../../../shared/services/category.service";
@@ -24,7 +24,7 @@ export class CatalogComponent implements OnInit {
 
   products: ProductType[] = [];
   categoriesWithTypes: CategoryWithTypeType[] = [];
-  activeParams: ActiveParamsType = {types: []}
+  activeParams: ActiveParamsType = {types: []};
   appliedFilters: AppliedFilterType[] = [];
   sortingOpen = false;
   favoriteProducts: FavoriteType[] | null = null;
@@ -136,7 +136,7 @@ export class CatalogComponent implements OnInit {
                 if (this.cart && this.cart.items.length > 0) {
                   this.products = data.items.map((product: ProductType) => {
                     if (this.cart) {
-                      const productInCart = this.cart.items.find(item => item.product.id === product.id)
+                      const productInCart = this.cart.items.find(item => item.product.id === product.id);
                       if (productInCart) {
                         product.countInCart = productInCart.quantity;
                       }
@@ -154,7 +154,7 @@ export class CatalogComponent implements OnInit {
                       product.isInFavorite = true;
                     }
                     return product;
-                  })
+                  });
                 }
               });
           });
@@ -205,7 +205,10 @@ export class CatalogComponent implements OnInit {
   }
 
   openNextPage() {
-    if (this.activeParams.page && this.activeParams.page < this.pages.length) {
+    if (!this.activeParams.page) {
+      this.activeParams.page = 1;
+    }
+    if (this.activeParams.page < this.pages.length) {
       this.activeParams.page++;
       this.router.navigate(['/catalog'], {
         queryParams: this.activeParams
@@ -213,5 +216,10 @@ export class CatalogComponent implements OnInit {
     }
   }
 
-
+  @HostListener('document:click', ['$event'])
+  click(event: Event) {
+    if (this.sortingOpen && (event.target as HTMLElement).parentElement?.className.indexOf('catalog-sorting') === -1) {
+      this.sortingOpen = false;
+    }
+  }
 }

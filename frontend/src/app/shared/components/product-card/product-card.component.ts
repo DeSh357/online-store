@@ -89,7 +89,7 @@ export class ProductCardComponent implements OnInit {
           }
 
           this.product.isInFavorite = false;
-        })
+        });
     } else {
       this.favoriteService.addFavorite(this.product.id)
         .subscribe((data: FavoriteType | DefaultResponseType) => {
@@ -98,7 +98,7 @@ export class ProductCardComponent implements OnInit {
           }
 
           this.product.isInFavorite = true;
-        })
+        });
     }
   }
 

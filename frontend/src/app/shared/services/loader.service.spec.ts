@@ -1,52 +1,28 @@
-import {ActiveParamsUtil} from "./active-params.util";
+import {LoaderService} from "./loader.service";
 
-describe('active params util', ()=> {
+describe('loader service', ()=> {
 
-  it('should change type string to type array', ()=> {
-    const result = ActiveParamsUtil.processParams({
-      types: 'sukkulenti'
-    });
-
-    expect(result.types).toBeInstanceOf(Array);
+  let loaderService: LoaderService;
+  beforeEach(() => {
+    loaderService = new LoaderService();
   });
 
-  it('should change page string to int', ()=> {
-    const result = ActiveParamsUtil.processParams({
-      page: '2'
+  it('should emit true value for showing loader', (done: DoneFn)=> {
+    loaderService.isShowed$.subscribe(value=> {
+      expect(value).toBe(true);
+      done();
     });
 
-    expect(result.page).toBe(2);
+    loaderService.show();
   });
 
-  it('should change page string to int', ()=> {
-    const result = ActiveParamsUtil.processParams({
-      types: 'sukkulenti',
-      heightFrom: '1',
-      heightTo: '1',
-      diameterFrom: '1',
-      diameterTo: '1',
-      sort: '1',
-      page: '2',
+  it('should emit false value for hiding loader', (done: DoneFn)=> {
+    loaderService.isShowed$.subscribe(value=> {
+      expect(value).toBe(false);
+      done();
     });
 
-    expect(result).toEqual({
-      types: ['sukkulenti'],
-      heightFrom: '1',
-      heightTo: '1',
-      diameterFrom: '1',
-      diameterTo: '1',
-      sort: '1',
-      page: 2,
-    });
-
-  });
-
-  it('should change page string to int', ()=> {
-    const result: any = ActiveParamsUtil.processParams({
-      pages: '2'
-    });
-
-    expect(result.pages).toBeUndefined();
+    loaderService.hide();
   });
 
 });

@@ -14,14 +14,14 @@ export class CategoryFilterComponent implements OnInit {
   @Input() categoryWithTypes: CategoryWithTypeType | null = null;
   @Input() type: string | null = null;
   open = false;
-  activeParams: ActiveParamsType = {types: []}
+  activeParams: ActiveParamsType = {types: []};
 
   from: number | null = null;
   to: number | null = null;
 
   get title(): string {
     if (this.categoryWithTypes) {
-      return this.categoryWithTypes.name
+      return this.categoryWithTypes.name;
     } else if (this.type) {
       if (this.type === 'height') {
         return 'Высота';
@@ -30,7 +30,7 @@ export class CategoryFilterComponent implements OnInit {
       }
     }
 
-    return ''
+    return '';
   }
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
@@ -75,7 +75,7 @@ export class CategoryFilterComponent implements OnInit {
       if (existingTypeInParams && !checked) {
         this.activeParams.types = this.activeParams.types.filter(item => item !== url);
       } else if (!existingTypeInParams && checked) {
-        this.activeParams.types = [...this.activeParams.types, url]
+        this.activeParams.types = [...this.activeParams.types, url];
       }
     } else if (checked) {
       this.activeParams.types = [url];
@@ -84,7 +84,7 @@ export class CategoryFilterComponent implements OnInit {
     this.activeParams.page = 1;
     this.router.navigate(['/catalog'], {
       queryParams: this.activeParams
-    })
+    });
   }
 
   updateFilterParamFromTo(param: string, value: string) {
@@ -98,7 +98,7 @@ export class CategoryFilterComponent implements OnInit {
       this.activeParams.page = 1;
       this.router.navigate(['/catalog'], {
         queryParams: this.activeParams
-      })
+      });
     }
   }
 }

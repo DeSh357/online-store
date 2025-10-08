@@ -1,32 +1,52 @@
-import {ActiveParamsType} from "../../../types/active-params.type";
-import {Params} from "@angular/router";
+import {ActiveParamsUtil} from "./active-params.util";
 
-export class ActiveParamsUtil {
-  static processParams(params: Params): ActiveParamsType {
-    const activeParams: ActiveParamsType = {types: []};
+describe('active params util', ()=> {
 
-    if (params.hasOwnProperty('types')) {
-      activeParams.types = Array.isArray(params['types']) ? params['types'] : [params['types']]
-    }
-    if (params.hasOwnProperty('heightFrom')) {
-      activeParams.heightFrom = params['heightFrom'];
-    }
-    if (params.hasOwnProperty('heightTo')) {
-      activeParams.heightTo = params['heightTo'];
-    }
-    if (params.hasOwnProperty('diameterFrom')) {
-      activeParams.diameterFrom = params['diameterFrom'];
-    }
-    if (params.hasOwnProperty('diameterTo')) {
-      activeParams.diameterTo = params['diameterTo'];
-    }
-    if (params.hasOwnProperty('sort')) {
-      activeParams.sort = params['sort'];
-    }
-    if (params.hasOwnProperty('page')) {
-      activeParams.page = +params['page'];
-    }
+  it('should change type string to type array', ()=> {
+    const result = ActiveParamsUtil.processParams({
+      types: 'sukkulenti'
+    });
 
-    return activeParams;
-  }
-}
+    expect(result.types).toBeInstanceOf(Array);
+  });
+
+  it('should change page string to int', ()=> {
+    const result = ActiveParamsUtil.processParams({
+      page: '2'
+    });
+
+    expect(result.page).toBe(2);
+  });
+
+  it('should change page string to int', ()=> {
+    const result = ActiveParamsUtil.processParams({
+      types: 'sukkulenti',
+      heightFrom: '1',
+      heightTo: '1',
+      diameterFrom: '1',
+      diameterTo: '1',
+      sort: '1',
+      page: '2',
+    });
+
+    expect(result).toEqual({
+      types: ['sukkulenti'],
+      heightFrom: '1',
+      heightTo: '1',
+      diameterFrom: '1',
+      diameterTo: '1',
+      sort: '1',
+      page: 2,
+    });
+
+  });
+
+  it('should change page string to int', ()=> {
+    const result: any = ActiveParamsUtil.processParams({
+      pages: '2'
+    });
+
+    expect(result.pages).toBeUndefined();
+  });
+
+});

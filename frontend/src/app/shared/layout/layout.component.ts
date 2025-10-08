@@ -20,7 +20,7 @@ export class LayoutComponent implements OnInit {
         this.categories = categories.map(item => {
           return Object.assign({typesUrl: item.types.map(item => item.url)}, item);
         });
-      })
+      });
   }
 
 }

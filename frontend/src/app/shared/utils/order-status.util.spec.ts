@@ -1,27 +1,21 @@
+import {OrderStatusUtil} from "./order-status.util";
 import {OrderStatusType} from "../../../types/order-status.type";
 
-export class OrderStatusUtil {
-  static getStatusAndColor(status: OrderStatusType | undefined | null): { name: string, color: string } {
-    let name = 'Новый';
-    let color = '#456F49';
+describe('order status util', ()=> {
 
-    switch (status) {
-      case OrderStatusType.delivery:
-        name = 'Доставка';
-        break;
-      case OrderStatusType.cancelled:
-        name = 'Отменен';
-        color = '#FF7575';
-        break;
-      case OrderStatusType.pending:
-        name = 'Обработка';
-        break;
-      case OrderStatusType.success:
-        name = 'Выполнен';
-        color = '#B6D5B9';
-        break;
-    }
+  it('should return name and color with no status', ()=> {
+    const result = OrderStatusUtil.getStatusAndColor(null);
 
-    return {name, color};
-  }
-}
+    expect(result.name).not.toBe('');
+    expect(result.color).not.toBe('');
+  });
+
+  it('should return new order status with wrong status', ()=> {
+    const result = OrderStatusUtil.getStatusAndColor('test' as OrderStatusType);
+
+    expect(result.name).toBe('Новый');
+  });
+
+
+
+});

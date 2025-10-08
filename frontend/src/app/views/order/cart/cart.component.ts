@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
       }
     },
     nav: false
-  }
+  };
   cart: CartType | null = null;
   serverStaticPath = environment.serverStaticPath;
   totalAmount: number = 0;
@@ -60,7 +60,7 @@ export class CartComponent implements OnInit {
         }
         this.cart = data as CartType;
         this.calculateTotal();
-      })
+      });
   }
 
   calculateTotal() {
@@ -70,7 +70,7 @@ export class CartComponent implements OnInit {
       this.cart.items.forEach(item => {
         this.totalAmount += item.quantity * item.product.price;
         this.totalCount += item.quantity;
-      })
+      });
     }
   }
 
@@ -83,7 +83,7 @@ export class CartComponent implements OnInit {
           }
           this.cart = data as CartType;
           this.calculateTotal();
-        })
+        });
     }
   }
 

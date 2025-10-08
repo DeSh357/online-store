@@ -56,13 +56,13 @@ export class InfoComponent implements OnInit {
           house: userInfo.house ? userInfo.house : '',
           entrance: userInfo.entrance ? userInfo.entrance : '',
           apartment: userInfo.apartment ? userInfo.apartment : '',
-        }
+        };
 
         this.userInfoForm.setValue(paramsToUpdate);
         if (userInfo.deliveryType) {
           this.deliveryType = userInfo.deliveryType;
         }
-      })
+      });
   }
 
   changeDeliveryType(deliveryType: DeliveryType) {
@@ -78,7 +78,7 @@ export class InfoComponent implements OnInit {
         email: this.userInfoForm.value.email ? this.userInfoForm.value.email : '',
         deliveryType: this.deliveryType,
         paymentType: this.userInfoForm.value.paymentType ? this.userInfoForm.value.paymentType : PaymentType.cashToCourier,
-      }
+      };
 
       if (this.userInfoForm.value.firstName) {
         paramObject.firstName = this.userInfoForm.value.firstName;
@@ -119,7 +119,7 @@ export class InfoComponent implements OnInit {
             if (errorResponse.error && errorResponse.error.message) {
               this._snackBar.open(errorResponse.error.message);
             } else {
-              this._snackBar.open('Ошибка сохранения')
+              this._snackBar.open('Ошибка сохранения');
             }
           }
         });

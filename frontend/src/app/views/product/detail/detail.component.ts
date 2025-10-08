@@ -50,7 +50,7 @@ export class DetailComponent implements OnInit {
       }
     },
     nav: false
-  }
+  };
 
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute,
               private cartService: CartService, private favoriteService: FavoriteService,
@@ -95,7 +95,7 @@ export class DetailComponent implements OnInit {
                 }
               });
           }
-        })
+        });
     });
 
     this.productService.getBestProducts()
@@ -156,7 +156,7 @@ export class DetailComponent implements OnInit {
           }
 
           this.product.isInFavorite = false;
-        })
+        });
     } else {
       this.favoriteService.addFavorite(this.product.id)
         .subscribe((data: FavoriteType | DefaultResponseType) => {
@@ -165,7 +165,7 @@ export class DetailComponent implements OnInit {
           }
 
           this.product.isInFavorite = true;
-        })
+        });
     }
 
   }
